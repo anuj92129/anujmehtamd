@@ -241,13 +241,16 @@
         <!-- PAGE 1: HOME -->
         <section id="home" class="page-section active">
             <div class="hero-grid">
-                <!-- IMAGE PLACEHOLDER 1: Main Headshot -->
+                <!-- IMAGE PLACEHOLDER: Main Headshot -->
                 <img src="images/headshot.jpg" alt="Dr. Anuj Mehta" class="profile-photo" onerror="this.src='https://via.placeholder.com/300x380?text=Upload+headshot.jpg+to+images/'">
                 <div>
                     <h1 class="hero-title">Anuj Mehta, MD</h1>
                     <div class="hero-subtitle">Adult Reconstruction Orthopaedic Surgeon</div>
-                    <p>Welcome. Dr. Anuj Mehta is an orthopaedic surgeon specializing in adult hip and knee reconstruction, complex joint revision, and robotic-assisted surgical technology.</p>
-                    <p>Having completed his Chief Residency at Temple University Health System, he is currently advancing his specialized clinical practice as an Adult Reconstruction Fellow at Lenox Hill Hospital in New York, NY.</p>
+                    
+                    <!-- EXECUTIVE BIO -->
+                    <p>Dr. Anuj Mehta is an orthopaedic surgeon specializing in adult hip and knee reconstruction, complex joint revision, and robotic-assisted surgical technology. Having served as Chief Resident at Temple University Health System, he is currently expanding his advanced clinical expertise as an Adult Reconstruction Fellow at Lenox Hill Hospital in New York, NY.</p>
+                    
+                    <p>Recognized as a <em>Temple University 30 Under 30</em> honoree for research and technology innovation, an Alpha Omega Alpha (AOA) Honor Medical Society inductee, and an active contributor to clinical research, Dr. Mehta is committed to evidence-based care, surgical precision, and improving long-term patient outcomes.</p>
                 </div>
             </div>
 
@@ -428,21 +431,17 @@
 
     <script>
         function switchTab(tabId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(s => s.classList.remove('active'));
 
-            // Deactivate all nav links
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(a => a.classList.remove('active'));
 
-            // Show selected section
             const activeSection = document.getElementById(tabId);
             if (activeSection) {
                 activeSection.classList.add('active');
             }
 
-            // Highlight selected nav link
             const activeNav = document.getElementById('nav-' + tabId);
             if (activeNav) {
                 activeNav.classList.add('active');
@@ -451,7 +450,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Handle URL Hash navigation (e.g. #research)
         window.addEventListener('load', () => {
             const hash = window.location.hash.replace('#', '');
             if (hash && document.getElementById(hash)) {
