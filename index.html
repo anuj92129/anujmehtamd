@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuj Mehta, MD | Adult Reconstruction & Joint Replacement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2b6cb0;
+            --accent: #0077b5;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-light);
+        }
+
+        /* Container Sections */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Components */
+        h1, h2, h3 {
+            color: var(--primary);
+            font-family: var(--font-heading);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; margin-top: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+        h3 { font-size: 1.3rem; margin-top: 1.2rem; }
+
+        p { margin-bottom: 1rem; color: var(--text-dark); }
+        
+        ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        li { margin-bottom: 0.5rem; }
+
+        blockquote {
+            background-color: var(--white);
+            border-left: 4px solid var(--primary-light);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        /* Hero / Profile Layout */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+            align-items: center;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Tables & Cards */
+        .snapshot-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .snapshot-table th, .snapshot-table td {
+            padding: 1rem 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .snapshot-table th {
+            background-color: var(--bg-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .btn-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background 0.2s ease;
+        }
+
+        .btn-linkedin:hover {
+            background-color: #005582;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--white);
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-photo { margin: 0 auto; }
+            .nav-links { gap: 0.8rem; font-size: 0.85rem; }
+            nav { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo" onclick="switchTab('home')">Anuj Mehta, MD</a>
+            <ul class="nav-links">
+                <li><a href="#home" id="nav-home" class="active" onclick="switchTab('home')">Home</a></li>
+                <li><a href="#clinical" id="nav-clinical" onclick="switchTab('clinical')">Clinical Focus</a></li>
+                <li><a href="#cv" id="nav-cv" onclick="switchTab('cv')">CV & Leadership</a></li>
+                <li><a href="#research" id="nav-research" onclick="switchTab('research')">Research</a></li>
+                <li><a href="#contact" id="nav-contact" onclick="switchTab('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- PAGE 1: HOME -->
+        <section id="home" class="page-section active">
+            <div class="hero-grid">
+                <!-- IMAGE PLACEHOLDER 1: Main Headshot -->
+                <img src="images/headshot.jpg" alt="Dr. Anuj Mehta" class="profile-photo" onerror="this.src='https://via.placeholder.com/300x380?text=Upload+headshot.jpg+to+images/'">
+                <div>
+                    <h1 class="hero-title">Anuj Mehta, MD</h1>
+                    <div class="hero-subtitle">Adult Reconstruction Orthopaedic Surgeon</div>
+                    <p>Welcome. Dr. Anuj Mehta is an orthopaedic surgeon specializing in adult hip and knee reconstruction, complex joint revision, and robotic-assisted surgical technology.</p>
+                    <p>Having completed his Chief Residency at Temple University Health System, he is currently advancing his specialized clinical practice as an Adult Reconstruction Fellow at Lenox Hill Hospital in New York, NY.</p>
+                </div>
+            </div>
+
+            <h2>Career Snapshot</h2>
+            <table class="snapshot-table">
+                <tr>
+                    <th>Current Appointment</th>
+                    <td>Adult Reconstruction Fellow, Lenox Hill Hospital (NY)</td>
+                </tr>
+                <tr>
+                    <th>Residency</th>
+                    <td>Chief Resident, Temple University Health System (PA)</td>
+                </tr>
+                <tr>
+                    <th>Medical Education</th>
+                    <td>MD, Penn State College of Medicine | Alpha Omega Alpha (AOA)</td>
+                </tr>
+                <tr>
+                    <th>Medical Licensure</th>
+                    <td>State Medical License – New York</td>
+                </tr>
+                <tr>
+                    <th>Honors & Distinction</th>
+                    <td>Temple University 30 Under 30 Recipient, Distinction in Major (Biology)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- PAGE 2: CLINICAL FOCUS -->
+        <section id="clinical" class="page-section">
+            <h1>Clinical Focus & Care Philosophy</h1>
+            
+            <blockquote>
+                "Restoring mobility, relieving pain, and helping patients return to an active, fulfilling life through evidence-based surgical care, advanced technology, and personalized treatment plans."
+            </blockquote>
+
+            <h2>Specialized Clinical Focus & Surgical Expertise</h2>
+            <p><em>Advanced fellowship training in complex hip and knee reconstruction, robotic technology, and minimally invasive techniques.</em></p>
+
+            <h3>Hip Arthroplasty & Reconstruction</h3>
+            <ul>
+                <li><strong>Primary Total Hip Arthroplasty:</strong> Direct Anterior and Posterior Approaches</li>
+                <li><strong>Complex & Revision Hip Replacement:</strong> Management of hardware failure, infection, instability, and severe bone loss</li>
+                <li><strong>Conditions Treated:</strong> Hip Osteoarthritis, Avascular Necrosis (AVN), Post-Traumatic Arthritis, and Hip Dysplasia</li>
+            </ul>
+
+            <h3>Knee Arthroplasty & Reconstruction</h3>
+            <ul>
+                <li><strong>Primary Total Knee Arthroplasty (TKA):</strong> Advanced component alignment strategies and joint restoration</li>
+                <li><strong>Partial (Unicompartmental) Knee Replacement:</strong> Targeted preservation of native joint kinematics</li>
+                <li><strong>Complex & Revision Knee Replacement:</strong> Reconstruction for aseptic loosening, persistent pain, instability, or infection</li>
+            </ul>
+
+            <h3>Surgical Innovation & Technology</h3>
+            <ul>
+                <li><strong>Robotic-Assisted Surgery:</strong> Precision navigation for optimized component positioning and soft tissue balancing</li>
+                <li><strong>Computer-Navigated & Patient-Specific Planning:</strong> Pre-operative 3D modeling and custom intraoperative execution</li>
+                <li><strong>Minimally Invasive Techniques & Rapid Recovery:</strong> Multimodal pain protocols and perioperative care designed for accelerated rehabilitation</li>
+            </ul>
+
+            <h2>Patient-Centered Care Philosophy</h2>
+            <p>Every patient’s joint health journey is unique. Dr. Mehta emphasizes thorough patient education, transparent communication, and non-surgical options—such as physical therapy, lifestyle modifications, and targeted joint injections—before considering surgical intervention.</p>
+            <p>When surgery is required, modern surgical guidance, muscle-sparing approaches, and multimodal pain management are leveraged to optimize surgical accuracy, minimize discomfort, and help patients safely regain their independence.</p>
+        </section>
+
+        <!-- PAGE 3: CV & LEADERSHIP -->
+        <section id="cv" class="page-section">
+            <h1>Curriculum Vitae, Credentials & Leadership</h1>
+
+            <h2>Education & Post-Graduate Training</h2>
+            <ul>
+                <li><strong>Adult Reconstruction Fellowship</strong> | Lenox Hill Hospital, New York, NY <em>(Aug 2026 – July 2027)</em></li>
+                <li><strong>Orthopaedic Surgery Residency</strong> | Temple University Health System, Philadelphia, PA <em>(June 2021 – June 2026)</em>
+                    <br><em>Chief Resident (July 2025 – June 2026)</em>
+                </li>
+                <li><strong>Doctor of Medicine (MD)</strong> | Penn State College of Medicine, Hershey, PA <em>(Aug 2017 – May 2021)</em>
+                    <br><em>Alpha Omega Alpha (AOA) Honor Society</em>
+                </li>
+                <li><strong>Bachelor of Science in Biology (Honors)</strong> | Temple University, Philadelphia, PA <em>(Aug 2013 – May 2017)</em>
+                    <br><em>Magna Cum Laude | Distinction in Major & Honors in Biology</em>
+                </li>
+            </ul>
+
+            <h2>Honors & Awards</h2>
+            <h3>Post-Graduate & Residency</h3>
+            <ul>
+                <li><strong>Temple Orthopaedics Annual Mission Trip Participant (2024):</strong> Selected as the sole resident for the annual international orthopaedic mission trip to CURE Hospital in Kijabe, Kenya.</li>
+                <li><strong>Temple University 30 Under 30 Award Recipient (2023):</strong> Honored under Research and Technology Innovation for alumnus achievement.</li>
+            </ul>
+
+            <h3>Medical School & Undergraduate</h3>
+            <ul>
+                <li><strong>Alpha Omega Alpha (AOA) Honor Society (2021)</strong></li>
+                <li><strong>Alphonse E. Leure-DuPree Exemplary Medical Student Award (2021):</strong> Awarded to one graduating student for overall excellence in academics and research.</li>
+                <li><strong>Distinction in Major (2017):</strong> Excellence in biology research at Temple University.</li>
+                <li><strong>Diamond Peer Teacher Award & Diamond Research Scholar Award (2015–2016)</strong></li>
+            </ul>
+
+            <h2>Leadership & Institutional Service</h2>
+            <ul>
+                <li><strong>House Staff Operating Room Committee Member</strong> | Temple Hospital <em>(2022 – 2026)</em></li>
+                <li><strong>Founder, President & Editor</strong> | Penn State Journal of Medicine <em>(2019 – 2021)</em></li>
+                <li><strong>Virtual Course Developer – Orthopaedics</strong> | Penn State College of Medicine <em>(2020 – 2021)</em></li>
+                <li><strong>Chapter President</strong> | AMSA & Business of Medicine Association <em>(2018 – 2019)</em></li>
+            </ul>
+
+            <h2>Memberships & Licensure</h2>
+            <ul>
+                <li><strong>Board Status:</strong> Board Eligible, American Board of Orthopaedic Surgery (ABOS)</li>
+                <li><strong>Medical Licensure:</strong> State Medical License – New York</li>
+                <li><strong>Professional Affiliations:</strong> American Association of Hip and Knee Surgeons (AAHKS), Young Arthroplasty Group (YAG), American Academy of Orthopaedic Surgeons (AAOS), Alpha Omega Alpha (AOA)</li>
+            </ul>
+
+            <h2>Languages & Personal Interests</h2>
+            <p><strong>Languages:</strong> Fluent in English, Gujarati, and Hindi; Proficient in Urdu and Punjabi.</p>
+            <p><strong>Interests:</strong> Golf, Philadelphia sports (Eagles, 76ers), Temple University Basketball, culinary arts, traveling, and exploring new restaurants with his fiancée, Riya.</p>
+        </section>
+
+        <!-- PAGE 4: RESEARCH -->
+        <section id="research" class="page-section">
+            <h1>Research, Publications & Presentations</h1>
+
+            <h2>Peer-Reviewed Publications</h2>
+            <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Prasad D, <strong>Mehta AV</strong>, Patel R, Zhao H, Bezwada H, Rehman S. "Survey Results Reveal Providers' Misconceptions about Penicillin Allergies and Cefazolin Use in Arthroplasty Patients." <em>Journal of Orthopaedic Reports</em>, May 2026.</li>
+                <li><strong>Mehta AV</strong>, Sangrigoli RM, Galos DK, Rehman S. "Open Reduction and Internal Fixation of Femoral Head Fracture After Firearm Injury: A Case Report." <em>JBJS Case Connect</em>, March 2025.</li>
+                <li>Sheehan CA, Shah RV, <strong>Mehta AV</strong>. "Regarding 'Does the Primary Surgical Approach Matter When Choosing the Approach for Revision Total Hip Arthroplasty?'." <em>Journal of Arthroplasty</em>, Feb 2024.</li>
+                <li>Pan T, <strong>Mehta A</strong>, Mason MW. "Outcomes of the Supine Anterior-based Muscle-sparing Approach for Primary and Revision Hip Arthroplasty." <em>JAAOS Global Res Rev</em>, Feb 2022.</li>
+                <li><strong>Mehta AV</strong>, Wilson C, King TS, Gallo RA. "Outcomes following quadriceps tendon repair using transosseous tunnels versus suture anchors: A systematic review." <em>Injury</em>, March 2021.</li>
+                <li>Khokhar A, <strong>Mehta AV</strong>, John K. "Medicaid Expansion and Rates of Opioid-Related Hospital Use." <em>JAMA Intern Med</em>, Oct 2020.</li>
+                <li>Tomar D, Jaña F, Dong Z, <strong>Mehta AV</strong>, et al. "Blockade of MCU-Mediated Ca2+ Uptake Perturbs Lipid Metabolism via PP4-Dependent AMPK Dephosphorylation." <em>Cell Rep</em>, March 2019.</li>
+            </ol>
+
+            <h2>Book Chapters & Educational Media</h2>
+            <ul>
+                <li><strong>Orthopaedic Techniques in Orthopaedic Surgery (4th Edition):</strong> Chapter 20 – Intramedullary Fixation of Humeral Shaft Fractures.</li>
+                <li><strong>Temple University Orthopaedics Resident Survival Guide (2024 Edition):</strong> Editor & Contributor.</li>
+            </ul>
+
+            <h2>Grand Rounds & Oral Presentations</h2>
+            <ul>
+                <li><strong>Mehta AV.</strong> "Total Knee Arthroplasty Alignment Strategies: Then and Now." Temple University Hospital Orthopaedic Residency Grand Rounds, Philadelphia, PA (February 2026).</li>
+                <li><strong>Mehta AV</strong>, Gokcen E. "CURE Hospital Kenya International trip 2024." Temple University Orthopaedic Residency Grand Rounds (March 2024).</li>
+                <li><strong>Mehta AV</strong>, Arab A, Rehman S. "Risk Factors for Delayed Follow up for Distal Radius Fractures Discharged from the Emergency Department." Temple Resident Research Day (May 2024).</li>
+            </ul>
+
+            <h2>Select Poster Presentations</h2>
+            <ul>
+                <li>Prasad D, <strong>Mehta AV</strong>, Patel R, Rehman S. "Preferences of Cefazolin Use Amongst Orthopaedic Surgeons and Anesthesia Healthcare Providers." Pennsylvania Orthopaedic Society, Bethlehem, PA (Oct 2025).</li>
+                <li><strong>Mehta AV</strong>, Du P, Kellett H, Cheng K, Sewards JM. "The Role of Physical Therapy in Preventing the Eventual Need for Meniscectomy." <strong>AAOS Annual Meeting</strong>, San Francisco, CA (Feb 2024).</li>
+            </ul>
+        </section>
+
+        <!-- PAGE 5: CONTACT -->
+        <section id="contact" class="page-section">
+            <h1>Contact & Connect</h1>
+
+            <h2>Clinical Appointment</h2>
+            <p><strong>Adult Reconstruction Fellow</strong><br>
+            Department of Orthopaedic Surgery<br>
+            Lenox Hill Hospital | Northwell Health<br>
+            New York, NY</p>
+
+            <h2>Professional Networking</h2>
+            <p>For academic inquiries, surgical collaboration, or professional networking, please connect via LinkedIn:</p>
+            
+            <a href="https://www.linkedin.com" target="_blank" class="btn-linkedin">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.762-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                Connect on LinkedIn
+            </a>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Anuj Mehta, MD. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Deactivate all nav links
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(a => a.classList.remove('active'));
+
+            // Show selected section
+            const activeSection = document.getElementById(tabId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+
+            // Highlight selected nav link
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handle URL Hash navigation (e.g. #research)
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                switchTab(hash);
+            }
+        });
+    </script>
+</body>
+</html>
